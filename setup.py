@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="grpc_madmin",
-    version="0.1",
+    version="0.2",
     packages=["grpc_madmin"],
     install_requires=["grpcio", "googleapis-common-protos"],
     zip_safe=False,
