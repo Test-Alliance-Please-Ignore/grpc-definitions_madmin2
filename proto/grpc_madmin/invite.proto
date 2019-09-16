@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package grpc_madmin.invite;
+
+message UserInviteRequest {
+    string access_token = 1;
+    int64 discord_id = 2;
+}

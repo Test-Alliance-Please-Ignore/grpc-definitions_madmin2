@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc_madmin.user;
+
+import "grpc_madmin/generic.proto";
+
+message UserAccessUpdated {
+    int32 auth_id = 1;
+    string sso_uuid = 2;
+    string username = 3;
+    int64 discord_id = 4;
+}
+
+service UserService {
+    rpc OnUpdateUser (UserAccessUpdated) returns (grpc_madmin.generic.GenericResponse);
+}
