@@ -2,7 +2,14 @@ syntax = "proto3";
 
 package grpc_madmin.invite;
 
+import "grpc_madmin/generic.proto";
+
 message UserInviteRequest {
     string access_token = 1;
     int64 discord_id = 2;
+    int32 auth_id = 3;
+}
+
+service InviteService {
+    rpc DoUserInvites (UserInviteRequest) returns (grpc_madmin.generic.GenericResponse);
 }

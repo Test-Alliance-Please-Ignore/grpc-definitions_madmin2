@@ -13,6 +13,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from grpc_madmin import generic_pb2 as grpc__madmin_dot_generic__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -20,8 +21,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='grpc_madmin.invite',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x18grpc_madmin/invite.proto\x12\x12grpc_madmin.invite\"=\n\x11UserInviteRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x12\n\ndiscord_id\x18\x02 \x01(\x03\x62\x06proto3')
-)
+  serialized_pb=_b('\n\x18grpc_madmin/invite.proto\x12\x12grpc_madmin.invite\x1a\x19grpc_madmin/generic.proto\"N\n\x11UserInviteRequest\x12\x14\n\x0c\x61\x63\x63\x65ss_token\x18\x01 \x01(\t\x12\x12\n\ndiscord_id\x18\x02 \x01(\x03\x12\x0f\n\x07\x61uth_id\x18\x03 \x01(\x05\x32m\n\rInviteService\x12\\\n\rDoUserInvites\x12%.grpc_madmin.invite.UserInviteRequest\x1a$.grpc_madmin.generic.GenericResponseb\x06proto3')
+  ,
+  dependencies=[grpc__madmin_dot_generic__pb2.DESCRIPTOR,])
 
 
 
@@ -47,6 +49,13 @@ _USERINVITEREQUEST = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='auth_id', full_name='grpc_madmin.invite.UserInviteRequest.auth_id', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -59,8 +68,8 @@ _USERINVITEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=48,
-  serialized_end=109,
+  serialized_start=75,
+  serialized_end=153,
 )
 
 DESCRIPTOR.message_types_by_name['UserInviteRequest'] = _USERINVITEREQUEST
@@ -73,5 +82,29 @@ UserInviteRequest = _reflection.GeneratedProtocolMessageType('UserInviteRequest'
   })
 _sym_db.RegisterMessage(UserInviteRequest)
 
+
+
+_INVITESERVICE = _descriptor.ServiceDescriptor(
+  name='InviteService',
+  full_name='grpc_madmin.invite.InviteService',
+  file=DESCRIPTOR,
+  index=0,
+  serialized_options=None,
+  serialized_start=155,
+  serialized_end=264,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='DoUserInvites',
+    full_name='grpc_madmin.invite.InviteService.DoUserInvites',
+    index=0,
+    containing_service=None,
+    input_type=_USERINVITEREQUEST,
+    output_type=grpc__madmin_dot_generic__pb2._GENERICRESPONSE,
+    serialized_options=None,
+  ),
+])
+_sym_db.RegisterServiceDescriptor(_INVITESERVICE)
+
+DESCRIPTOR.services_by_name['InviteService'] = _INVITESERVICE
 
 # @@protoc_insertion_point(module_scope)
