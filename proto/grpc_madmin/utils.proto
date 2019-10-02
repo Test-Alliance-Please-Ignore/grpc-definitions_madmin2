@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package grpc_madmin.utils;
+
+import "grpc_madmin/generic.proto";
+
+message RandomWordsRequest {
+    int64 seed = 1;
+    int32 num_words = 2;
+}
+
+service UtilsService {
+    rpc GenerateRandomWords(RandomWordsRequest) returns (grpc_madmin.generic.GenericResponse);
+}

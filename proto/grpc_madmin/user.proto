@@ -9,8 +9,28 @@ message UserAccessUpdated {
     string sso_uuid = 2;
     string username = 3;
     int64 discord_id = 4;
+    string primary_character_name = 5;
+    string primary_corporation_name = 6;
+    string primary_corporation_ticker = 7;
+}
+
+message UserGroupRequest {
+    int64 user_id = 1;
+    int64 guild_id = 2;
+    string group_name = 3;
+}
+
+message ServerSpecificGroup {
+    int64 guild_id = 1;
+    string name = 2;
+    string requestable_name = 3;
+}
+
+message RequestSSGListing {
+    int64 guild_id = 1;
 }
 
 service UserService {
     rpc OnUpdateUser (UserAccessUpdated) returns (grpc_madmin.generic.GenericResponse);
+    rpc ListSSGs (RequestSSGListing) returns (stream ServerSpecificGroup);
 }

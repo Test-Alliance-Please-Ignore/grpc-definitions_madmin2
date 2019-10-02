@@ -20,6 +20,11 @@ class UserServiceStub(object):
         request_serializer=grpc__madmin_dot_user__pb2.UserAccessUpdated.SerializeToString,
         response_deserializer=grpc__madmin_dot_generic__pb2.GenericResponse.FromString,
         )
+    self.ListSSGs = channel.unary_stream(
+        '/grpc_madmin.user.UserService/ListSSGs',
+        request_serializer=grpc__madmin_dot_user__pb2.RequestSSGListing.SerializeToString,
+        response_deserializer=grpc__madmin_dot_user__pb2.ServerSpecificGroup.FromString,
+        )
 
 
 class UserServiceServicer(object):
@@ -33,6 +38,13 @@ class UserServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def ListSSGs(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_UserServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -40,6 +52,11 @@ def add_UserServiceServicer_to_server(servicer, server):
           servicer.OnUpdateUser,
           request_deserializer=grpc__madmin_dot_user__pb2.UserAccessUpdated.FromString,
           response_serializer=grpc__madmin_dot_generic__pb2.GenericResponse.SerializeToString,
+      ),
+      'ListSSGs': grpc.unary_stream_rpc_method_handler(
+          servicer.ListSSGs,
+          request_deserializer=grpc__madmin_dot_user__pb2.RequestSSGListing.FromString,
+          response_serializer=grpc__madmin_dot_user__pb2.ServerSpecificGroup.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
