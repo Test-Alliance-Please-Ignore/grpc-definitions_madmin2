@@ -32,5 +32,6 @@ message RequestSSGListing {
 
 service UserService {
     rpc OnUpdateUser (UserAccessUpdated) returns (grpc_madmin.generic.GenericResponse);
+    rpc OnDisableUser (UserAccessUpdated) returns (grpc_madmin.generic.GenericResponse);
     rpc ListSSGs (RequestSSGListing) returns (stream ServerSpecificGroup);
 }
