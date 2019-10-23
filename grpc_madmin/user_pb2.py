@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='grpc_madmin.user',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\x16grpc_madmin/user.proto\x12\x10grpc_madmin.user\x1a\x19grpc_madmin/generic.proto\"\xc2\x01\n\x11UserAccessUpdated\x12\x0f\n\x07\x61uth_id\x18\x01 \x01(\x05\x12\x10\n\x08sso_uuid\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x12\n\ndiscord_id\x18\x04 \x01(\x03\x12\x1e\n\x16primary_character_name\x18\x05 \x01(\t\x12 \n\x18primary_corporation_name\x18\x06 \x01(\t\x12\"\n\x1aprimary_corporation_ticker\x18\x07 \x01(\t\"I\n\x10UserGroupRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\x10\n\x08guild_id\x18\x02 \x01(\x03\x12\x12\n\ngroup_name\x18\x03 \x01(\t\"O\n\x13ServerSpecificGroup\x12\x10\n\x08guild_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x18\n\x10requestable_name\x18\x03 \x01(\t\"%\n\x11RequestSSGListing\x12\x10\n\x08guild_id\x18\x01 \x01(\x03\x32\xc2\x01\n\x0bUserService\x12Y\n\x0cOnUpdateUser\x12#.grpc_madmin.user.UserAccessUpdated\x1a$.grpc_madmin.generic.GenericResponse\x12X\n\x08ListSSGs\x12#.grpc_madmin.user.RequestSSGListing\x1a%.grpc_madmin.user.ServerSpecificGroup0\x01\x62\x06proto3')
+  serialized_pb=_b('\n\x16grpc_madmin/user.proto\x12\x10grpc_madmin.user\x1a\x19grpc_madmin/generic.proto\"\xc2\x01\n\x11UserAccessUpdated\x12\x0f\n\x07\x61uth_id\x18\x01 \x01(\x05\x12\x10\n\x08sso_uuid\x18\x02 \x01(\t\x12\x10\n\x08username\x18\x03 \x01(\t\x12\x12\n\ndiscord_id\x18\x04 \x01(\x03\x12\x1e\n\x16primary_character_name\x18\x05 \x01(\t\x12 \n\x18primary_corporation_name\x18\x06 \x01(\t\x12\"\n\x1aprimary_corporation_ticker\x18\x07 \x01(\t\"I\n\x10UserGroupRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x03\x12\x10\n\x08guild_id\x18\x02 \x01(\x03\x12\x12\n\ngroup_name\x18\x03 \x01(\t\"O\n\x13ServerSpecificGroup\x12\x10\n\x08guild_id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\x18\n\x10requestable_name\x18\x03 \x01(\t\"%\n\x11RequestSSGListing\x12\x10\n\x08guild_id\x18\x01 \x01(\x03\x32\x9e\x02\n\x0bUserService\x12Y\n\x0cOnUpdateUser\x12#.grpc_madmin.user.UserAccessUpdated\x1a$.grpc_madmin.generic.GenericResponse\x12Z\n\rOnDisableUser\x12#.grpc_madmin.user.UserAccessUpdated\x1a$.grpc_madmin.generic.GenericResponse\x12X\n\x08ListSSGs\x12#.grpc_madmin.user.RequestSSGListing\x1a%.grpc_madmin.user.ServerSpecificGroup0\x01\x62\x06proto3')
   ,
   dependencies=[grpc__madmin_dot_generic__pb2.DESCRIPTOR,])
 
@@ -264,7 +264,7 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=464,
-  serialized_end=658,
+  serialized_end=750,
   methods=[
   _descriptor.MethodDescriptor(
     name='OnUpdateUser',
@@ -276,9 +276,18 @@ _USERSERVICE = _descriptor.ServiceDescriptor(
     serialized_options=None,
   ),
   _descriptor.MethodDescriptor(
+    name='OnDisableUser',
+    full_name='grpc_madmin.user.UserService.OnDisableUser',
+    index=1,
+    containing_service=None,
+    input_type=_USERACCESSUPDATED,
+    output_type=grpc__madmin_dot_generic__pb2._GENERICRESPONSE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
     name='ListSSGs',
     full_name='grpc_madmin.user.UserService.ListSSGs',
-    index=1,
+    index=2,
     containing_service=None,
     input_type=_REQUESTSSGLISTING,
     output_type=_SERVERSPECIFICGROUP,

@@ -20,6 +20,10 @@ class UserServiceBase(abc.ABC):
         pass
 
     @abc.abstractmethod
+    async def OnDisableUser(self, stream: 'grpclib.server.Stream[grpc_madmin.user_pb2.UserAccessUpdated, grpc_madmin.generic_pb2.GenericResponse]') -> None:
+        pass
+
+    @abc.abstractmethod
     async def ListSSGs(self, stream: 'grpclib.server.Stream[grpc_madmin.user_pb2.RequestSSGListing, grpc_madmin.user_pb2.ServerSpecificGroup]') -> None:
         pass
 
@@ -27,6 +31,12 @@ class UserServiceBase(abc.ABC):
         return {
             '/grpc_madmin.user.UserService/OnUpdateUser': grpclib.const.Handler(
                 self.OnUpdateUser,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                grpc_madmin.user_pb2.UserAccessUpdated,
+                grpc_madmin.generic_pb2.GenericResponse,
+            ),
+            '/grpc_madmin.user.UserService/OnDisableUser': grpclib.const.Handler(
+                self.OnDisableUser,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 grpc_madmin.user_pb2.UserAccessUpdated,
                 grpc_madmin.generic_pb2.GenericResponse,
@@ -46,6 +56,12 @@ class UserServiceStub:
         self.OnUpdateUser = grpclib.client.UnaryUnaryMethod(
             channel,
             '/grpc_madmin.user.UserService/OnUpdateUser',
+            grpc_madmin.user_pb2.UserAccessUpdated,
+            grpc_madmin.generic_pb2.GenericResponse,
+        )
+        self.OnDisableUser = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/grpc_madmin.user.UserService/OnDisableUser',
             grpc_madmin.user_pb2.UserAccessUpdated,
             grpc_madmin.generic_pb2.GenericResponse,
         )
