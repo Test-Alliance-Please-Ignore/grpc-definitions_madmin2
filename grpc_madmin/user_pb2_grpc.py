@@ -79,3 +79,45 @@ def add_UserServiceServicer_to_server(servicer, server):
   generic_handler = grpc.method_handlers_generic_handler(
       'grpc_madmin.user.UserService', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
+
+
+class BotServiceStub(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def __init__(self, channel):
+    """Constructor.
+
+    Args:
+      channel: A grpc.Channel.
+    """
+    self.UpdateUserRoles = channel.unary_unary(
+        '/grpc_madmin.user.BotService/UpdateUserRoles',
+        request_serializer=grpc__madmin_dot_user__pb2.RoleAccessUpdate.SerializeToString,
+        response_deserializer=grpc__madmin_dot_generic__pb2.GenericResponse.FromString,
+        )
+
+
+class BotServiceServicer(object):
+  # missing associated documentation comment in .proto file
+  pass
+
+  def UpdateUserRoles(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
+
+def add_BotServiceServicer_to_server(servicer, server):
+  rpc_method_handlers = {
+      'UpdateUserRoles': grpc.unary_unary_rpc_method_handler(
+          servicer.UpdateUserRoles,
+          request_deserializer=grpc__madmin_dot_user__pb2.RoleAccessUpdate.FromString,
+          response_serializer=grpc__madmin_dot_generic__pb2.GenericResponse.SerializeToString,
+      ),
+  }
+  generic_handler = grpc.method_handlers_generic_handler(
+      'grpc_madmin.user.BotService', rpc_method_handlers)
+  server.add_generic_rpc_handlers((generic_handler,))
