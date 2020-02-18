@@ -11,6 +11,12 @@ message RoleAccessUpdate {
     repeated int64 roles = 3;
 }
 
+message UserKick {
+    int64 discord_id = 1;
+    int64 guild_id = 2;
+    string reason = 3;
+}
+
 message UserAccessUpdated {
     int32 auth_id = 1;
     string sso_uuid = 2;
@@ -45,4 +51,5 @@ service UserService {
 
 service BotService {
     rpc UpdateUserRoles(RoleAccessUpdate) returns (grpc_madmin.generic.GenericResponse);
+    rpc KickUser(UserKick) returns (grpc_madmin.generic.GenericResponse);
 }
