@@ -79,12 +79,22 @@ class BotServiceBase(abc.ABC):
     async def UpdateUserRoles(self, stream: 'grpclib.server.Stream[grpc_madmin.user_pb2.RoleAccessUpdate, grpc_madmin.generic_pb2.GenericResponse]') -> None:
         pass
 
+    @abc.abstractmethod
+    async def KickUser(self, stream: 'grpclib.server.Stream[grpc_madmin.user_pb2.UserKick, grpc_madmin.generic_pb2.GenericResponse]') -> None:
+        pass
+
     def __mapping__(self) -> typing.Dict[str, grpclib.const.Handler]:
         return {
             '/grpc_madmin.user.BotService/UpdateUserRoles': grpclib.const.Handler(
                 self.UpdateUserRoles,
                 grpclib.const.Cardinality.UNARY_UNARY,
                 grpc_madmin.user_pb2.RoleAccessUpdate,
+                grpc_madmin.generic_pb2.GenericResponse,
+            ),
+            '/grpc_madmin.user.BotService/KickUser': grpclib.const.Handler(
+                self.KickUser,
+                grpclib.const.Cardinality.UNARY_UNARY,
+                grpc_madmin.user_pb2.UserKick,
                 grpc_madmin.generic_pb2.GenericResponse,
             ),
         }
@@ -97,5 +107,11 @@ class BotServiceStub:
             channel,
             '/grpc_madmin.user.BotService/UpdateUserRoles',
             grpc_madmin.user_pb2.RoleAccessUpdate,
+            grpc_madmin.generic_pb2.GenericResponse,
+        )
+        self.KickUser = grpclib.client.UnaryUnaryMethod(
+            channel,
+            '/grpc_madmin.user.BotService/KickUser',
+            grpc_madmin.user_pb2.UserKick,
             grpc_madmin.generic_pb2.GenericResponse,
         )
